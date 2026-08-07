@@ -19,8 +19,15 @@
 
       <div class="fleet-section">
         <div class="fleet-card">
-          <div class="fleet-image">
-            <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=8%20ton%20commercial%20truck%20with%20detachable%20water%20tanker%2C%20yellow%20construction%20vehicle%2C%20professional%20photo%2C%20industrial%20setting%2C%20high%20quality&image_size=landscape_16_9" alt="8-Ton Truck Water Tanker" />
+          <div class="fleet-images">
+            <div class="fleet-image fleet-image--truck">
+              <img :src="truckImg" alt="8-Ton Transport Truck" />
+              <span class="fleet-image-tag">🚚 8-Ton Truck</span>
+            </div>
+            <div class="fleet-image fleet-image--tanker">
+              <img :src="tankImg" alt="Water Tanker" />
+              <span class="fleet-image-tag">💧 Water Tanker</span>
+            </div>
           </div>
           <div class="fleet-content">
             <span class="fleet-badge">Owned Fleet</span>
@@ -63,10 +70,14 @@
 import housingImg from '../assets/image.png'
 import municipalImg from '../assets/municipal.png'
 import plasterImg from '../assets/plaster.png'
+import truckImg from '../assets/truck.png'
+import tankImg from '../assets/tank.png'
 
 export default {
   data() {
     return {
+      truckImg,
+      tankImg,
       projects: [
         {
           tag: 'Housing',
@@ -108,17 +119,45 @@ export default {
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(27, 67, 50, 0.2);
 }
-.fleet-image {
+.fleet-images {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  min-height: 380px;
+  min-height: 480px;
+}
+.fleet-image {
+  position: relative;
+  flex: 1;
+  min-height: 0;
   background: #0b2a1c;
+  overflow: hidden;
+}
+.fleet-image--truck {
+  border-bottom: 3px solid #1b4332;
 }
 .fleet-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s ease;
+}
+.fleet-image:hover img {
+  transform: scale(1.05);
+}
+.fleet-image-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(27, 67, 50, 0.9);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(212, 160, 22, 0.35);
 }
 .fleet-content {
   padding: 44px 40px;
@@ -204,14 +243,30 @@ export default {
   .fleet-card {
     grid-template-columns: 1fr;
   }
-  .fleet-image {
-    min-height: 260px;
+  .fleet-images {
+    min-height: 0;
+    flex-direction: row;
+    height: 220px;
+  }
+  .fleet-image--truck {
+    border-bottom: none;
+    border-right: 3px solid #1b4332;
   }
   .fleet-content {
     padding: 32px 24px;
   }
   .fleet-content h3 {
     font-size: 1.5rem;
+  }
+}
+@media (max-width: 520px) {
+  .fleet-images {
+    flex-direction: column;
+    height: 360px;
+  }
+  .fleet-image--truck {
+    border-right: none;
+    border-bottom: 3px solid #1b4332;
   }
 }
 </style>
