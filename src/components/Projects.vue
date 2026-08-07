@@ -58,11 +58,18 @@
                 </div>
               </li>
             </ul>
-            <a href="#contact" class="btn-primary">Enquire About Hiring</a>
+            <button class="btn-primary" @click="showModal = true">Enquire About Hiring</button>
           </div>
         </div>
       </div>
     </div>
+
+    <ContactModal
+      :show="showModal"
+      email="mogasegase123@gmail.com"
+      phone-number="0673796372"
+      @close="showModal = false"
+    />
   </section>
 </template>
 
@@ -72,10 +79,13 @@ import municipalImg from '../assets/municipal.png'
 import plasterImg from '../assets/plaster.png'
 import truckImg from '../assets/truck.png'
 import tankImg from '../assets/tank.png'
+import ContactModal from './ContactModal.vue'
 
 export default {
+  components: { ContactModal },
   data() {
     return {
+      showModal: false,
       truckImg,
       tankImg,
       projects: [

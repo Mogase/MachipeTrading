@@ -14,7 +14,10 @@
           premium construction services with integrity,
           precision, and a commitment to transformation.
         </p>
-        <a href="#contact" class="btn-primary">Let’s Build Together →</a>
+        <div class="hero-cta">
+          <button class="btn-primary" @click="showModal = true">Contact Us →</button>
+          <a href="#services" class="btn-outline">Our Services</a>
+        </div>
         <div class="hero-stats">
           <div class="stat">
             <span class="stat-number">20+</span>
@@ -33,21 +36,21 @@
       <div class="hero-visual">
         <div class="hero-card">
           <div class="feature">
-            
+            <div class="feature-icon">🏗️</div>
             <div class="feature-text">
               General Building
               <small>Full-scope construction services</small>
             </div>
           </div>
           <div class="feature">
-            
+            <div class="feature-icon">🎨</div>
             <div class="feature-text">
               Premium Finishes
               <small>Plastering, painting &amp; tiling</small>
             </div>
           </div>
           <div class="feature">
-            
+            <div class="feature-icon">🏘️</div>
             <div class="feature-text">
               Low-Cost Housing
               <small>Municipal &amp; development projects</small>
@@ -56,5 +59,51 @@
         </div>
       </div>
     </div>
+
+    <ContactModal
+      :show="showModal"
+      email="mogasegase123@gmail.com"
+      phone-number="0673796372"
+      @close="showModal = false"
+    />
   </section>
 </template>
+
+<script>
+import ContactModal from './ContactModal.vue'
+
+export default {
+  components: { ContactModal },
+  data() {
+    return {
+      showModal: false
+    }
+  }
+}
+</script>
+
+<style scoped>
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.hero-cta .btn-primary,
+.hero-cta .btn-outline {
+  font-family: inherit;
+  font-size: 1rem;
+}
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 160, 22, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #d4a016;
+  flex-shrink: 0;
+}
+</style>
